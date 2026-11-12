@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
+  xsi:type="MailApp">
+
+  <Id>979B9530-E85F-4199-B083-4AB91236010B</Id>
+  <Version>3.13.6</Version>
+  <ProviderName>Boldon James</ProviderName>
+  <DefaultLocale>en-us</DefaultLocale>
+  <DisplayName DefaultValue="Classifier" />
+  <Description DefaultValue="The Classifier Mail Add-in provides Classifier functionality in Outlook Web App for Exchange 2016 (CU20 or later), Exchange 2019 (CU9 or later) and Exchange Online in Office 365. It requires a Classifier Mail and Office Add-in Website to operate." />
+  <IconUrl DefaultValue="https://github.com/davidanukege-boop/CapstoneProject/blob/public/Classifier64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://github.com/davidanukege-boop/CapstoneProject/blob/public/Classifier128.png"/>
+  <SupportUrl DefaultValue="https://lumenave.com" />
+  <AppDomains>
+    <AppDomain>https://lumenave.com</AppDomain>
+  </AppDomains>
+
+  
+  <Requirements>
+    <Sets DefaultMinVersion="1.3">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppRead/Home.html"/>
+        <RequestedHeight>125</RequestedHeight>
+      </DesktopSettings>
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppRead/Home.html" />
+        <RequestedHeight>125</RequestedHeight>
+      </TabletSettings>
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppRead/Home.html" />
+      </PhoneSettings>
+    </Form>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppCompose/Home.html"/>
+      </DesktopSettings>
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppCompose/Home.html" />
+      </TabletSettings>
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://lumenave.com/OCWA/AppCompose/Home.html" />
+      </PhoneSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteMailbox</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <!-- On Send requires VersionOverridesV1_1 -->
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Description resid="residAppDescription" />
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.3">
+          <bt:Set Name="Mailbox" />
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <!-- The functionfile and function name to call on message send.  -->
+            <FunctionFile resid="residUILessFunctionFileUrl" />
+            
+            <!-- Message compose form -->
+            <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="msgComposeDemoGroup">
+                  <Label resid="groupLabel" />
+			          <!--StartSetLabel-->
+                      <Control xsi:type="Button" id="msgComposeOpenPaneButton">
+                        <Label resid="paneComposeButtonLabel" />
+                        <Supertip>
+                          <Title resid="paneComposeSuperTipTitle" />
+                          <Description resid="paneComposeSuperTipDescription" />
+                        </Supertip>
+                        <Icon>
+                          <bt:Image size="16" resid="classifier-icon-16" />
+                          <bt:Image size="32" resid="classifier-icon-32" />
+                          <bt:Image size="80" resid="classifier-icon-80" />
+                        </Icon>
+                        <Action xsi:type="ExecuteFunction">
+                          <FunctionName>ShowLabelDialogFromCommand</FunctionName>
+                        </Action>
+					  </Control>
+					  <!--EndSetLabel-->
+					  <!--StartSetPortionMarking-->
+					 
+					    <Control xsi:type="Button" id="msgComposePortionMarkingButton">
+						    <Label resid="portionMarkingButtonLabel" />
+						    <Supertip>
+							    <Title resid="portionMarkingSuperTipTitle" />
+							    <Description resid="portionMarkingSuperTipDesc" />
+						    </Supertip>
+						    <Icon>
+							    <bt:Image size="16" resid="classifier-icon-16" />
+							    <bt:Image size="32" resid="classifier-icon-32" />
+							    <bt:Image size="80" resid="classifier-icon-80" />
+						    </Icon>
+						    <Action xsi:type="ExecuteFunction">
+							    <FunctionName>PortionMarkingHook</FunctionName>
+						    </Action>
+					    </Control>
+					  
+					  <!--EndSetPortionMarking-->
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <!-- Message read form -->
+            <ExtensionPoint xsi:type="MessageReadCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="msgReadDemoGroup">
+                  <Label resid="groupLabel" />
+                  <!-- Task pane button -->
+                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                    <Label resid="paneReadButtonLabel" />
+                    <Supertip>
+                      <Title resid="paneReadSuperTipTitle" />
+                      <Description resid="paneReadSuperTipDescription" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="classifier-icon-16" />
+                      <bt:Image size="32" resid="classifier-icon-32" />
+                      <bt:Image size="80" resid="classifier-icon-80" />
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="readTaskPaneUrl" />
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <!-- Blue icon -->
+          <bt:Image id="classifier-icon-16" DefaultValue="https://lumenave.com/OCWA/Classifier16.png"/>
+          <bt:Image id="classifier-icon-32" DefaultValue="https://lumenave.com/OCWA/Classifier32.png"/>
+          <bt:Image id="classifier-icon-80" DefaultValue="https://lumenave.com/OCWA/Classifier80.png"/>
+          <bt:Image id="classifier-warning-16" DefaultValue="https://lumenave.com/OCWA/OC/Warning.png"/>
+          <bt:Image id="classifier-error-16" DefaultValue="https://lumenave.com/OCWA/OC/Error.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <!-- The JavaScript code is hosted on a secure and trusted web server. -->
+          <bt:Url id="residUILessFunctionFileUrl" DefaultValue="https://lumenave.com/OCWA/AppFunctions/index.html" />
+          <bt:Url id="readTaskPaneUrl" DefaultValue="https://lumenave.com/OCWA/AppRead/Home.html"/>
+          <bt:Url id="composeTaskPaneUrl" DefaultValue="https://lumenave.com/OCWA/AppCompose/Home.html"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="groupLabel" DefaultValue="Boldon James OWA Classification"/>
+          <!-- Compose mode -->
+          <bt:String id="paneComposeButtonLabel" DefaultValue="Label Dialog"/>
+          <bt:String id="paneComposeSuperTipTitle" DefaultValue="Choose to apply a Classification in Outlook Web App"/>
+		  <bt:String id="portionMarkingButtonLabel" DefaultValue="Portion Marking"/>
+		  <bt:String id="portionMarkingSuperTipTitle" DefaultValue="Choose to apply a Portion Marking in Outlook Web App"/>
+
+		  <!-- Read mode -->
+          <bt:String id="paneReadButtonLabel" DefaultValue="Display Classification"/>
+          <bt:String id="paneReadSuperTipTitle" DefaultValue="View the Classification"/>
+
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="residAppDescription" DefaultValue="The Classifier Mail Add-in provides Classifier functionality in Outlook Web App for Exchange 2016 (CU20 or later), Exchange 2019 (CU9 or later) and Exchange Online in Office 365. It requires a Classifier Mail and Office Add-in Website to operate."/>
+          <!-- Compose mode -->
+          <bt:String id="paneComposeSuperTipDescription" DefaultValue="Choose to apply a Classification in Outlook Web App"/>
+	      <bt:String id="portionMarkingSuperTipDesc" DefaultValue="Choose to apply Portion Marking in message body within Outlook Web App"/>
+		
+			<!-- Read mode -->
+          <bt:String id="paneReadSuperTipDescription" DefaultValue="View the Classification"/>
+          
+        </bt:LongStrings>
+      </Resources>
+  <!-- Start :  Required for Single-Sign-On getAccessToken()-->
+
+  <WebApplicationInfo>
+    <Id>038ed3bb-43a1-4743-aee5-bc9c6cab2fe8</Id>
+    <Resource>api://038ed3bb-43a1-4743-aee5-bc9c6cab2fe8</Resource>
+    <Scopes>
+      <Scope>openid</Scope>
+      <Scope>profile</Scope>
+      <Scope>user.read</Scope>
+     </Scopes>
+  </WebApplicationInfo>
+
+  <!-- End :  Required for Single-Sign-On getAccessToken()-->
+	<!--<EquivalentAddins>
+		<EquivalentAddin>
+			<ProgId>BoldonJames.SAFEoffice.Addin.Connect</ProgId>
+			<Type>COM</Type>
+		</EquivalentAddin>
+	</EquivalentAddins>-->
+	</VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
