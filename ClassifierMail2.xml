@@ -12,8 +12,8 @@
   <DefaultLocale>en-us</DefaultLocale>
   <DisplayName DefaultValue="Classifier" />
   <Description DefaultValue="The Classifier Mail Add-in provides Classifier functionality in Outlook Web App for Exchange 2016 (CU20 or later), Exchange 2019 (CU9 or later) and Exchange Online in Office 365. It requires a Classifier Mail and Office Add-in Website to operate." />
-  <IconUrl DefaultValue="https://github.com/davidanukege-boop/CapstoneProject/blob/public/Classifier64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://github.com/davidanukege-boop/CapstoneProject/blob/public/Classifier128.png"/>
+  <IconUrl DefaultValue="https://githubusercontent.com/davidanukege-boop/CapstoneProject/blob/public/Classifier64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://githubusercontent.com/davidanukege-boop/CapstoneProject/blob/public/Classifier128.png"/>
   <SupportUrl DefaultValue="https://lumenave.com" />
   <AppDomains>
     <AppDomain>https://lumenave.com</AppDomain>
